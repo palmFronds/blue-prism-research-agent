@@ -3,26 +3,26 @@ Automated research assistant that searches Google, extracts content from top res
 
 ![Process Flow](docs/workflow_diagram.png)
 
-## 🎯 Features
+## ✦  Features
 
 - **Automated Web Research**: Launches browser, executes Google searches, navigates to top results
 - **Intelligent Content Extraction**: Custom HTML parsing for Google results and article content
 - **AI-Powered Synthesis**: Integrates with OpenAI GPT-5-nano for multi-source analysis
 - **Professional Output**: Generates formatted reports with citations
 
-## 🏗️ Architecture
+## ✦  Architecture
 
 [Google Search] → [Parse Results] → [Extract Content] 
                         ↓
                   [AI Analysis] → [Generate Report]
 
-**Tech Stack:**
+**✦ Tech Stack:**
 - Blue Prism 7.x (RPA Platform)
 - OpenAI GPT-5-nano API
 - C# .NET (Code Stages)
 - Chrome/Edge Browser Automation
 
-## 📋 Prerequisites
+## ✦  Prerequisites
 
 - Blue Prism 7.0+ installed
 - OpenAI API account & key
@@ -30,7 +30,7 @@ Automated research assistant that searches Google, extracts content from top res
 - Windows 10/11
 - .NET Framework 4.7.2+
 
-## 🚀 Quick Start
+## ✦  Quick Start
 
 ### 1. Clone Repository
 ```bash
@@ -59,19 +59,19 @@ Monitor in Control Room
 Check output in C:\AI_Research_Reports\
 ```
 
-## 📖 Documentation
+## ✦  Documentation
 
 - [Setup Guide](config/setup_instructions.md) - Detailed installation
 - [Architecture](docs/architecture.md) - System design & decisions
 - [API Integration](docs/api_integration.md) - OpenAI integration details
 - [Demo Guide](docs/demo_guide.md) - Running the demonstration
 
-## 🎬 Demo
+## ✦  Demo
 
 **Watch 3-minute demo:** [demo/demo_video.mp4](demo/demo_video.mp4)
 **Sample Outputs:** Check [sample_outputs/](sample_outputs/) for example reports
 
-## 🔧 Key Technical Decisions
+## ✦  Key Technical Decisions
 
 ### Why Blue Prism?
 - Enterprise-grade RPA platform
@@ -89,7 +89,7 @@ Check output in C:\AI_Research_Reports\
 - Faster than OCR/vision models
 - More accurate text extraction
 
-## 📊 Performance
+## ✦  Performance
 
 | Metric | Value |
 |--------|-------|
@@ -98,6 +98,5 @@ Check output in C:\AI_Research_Reports\
 | Success Rate | 95%+ |
 | Token Usage | ~50k-100k per report |
 
-**Your Name**
 - GitHub: [@palmFronds](https://github.com/palmFronds)
 - LinkedIn: [Dheeraj Aaditya](https://www.linkedin.com/in/dheeraj-aaditya/)
