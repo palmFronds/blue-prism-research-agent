@@ -4,7 +4,7 @@ Automated research assistant that performs end-to-end web research and prepares 
 
 > **⚠️ Current Status**  
 > ✅ **Complete & Functional**: Browser automation, search execution, content extraction, cleaning, aggregation, and JSON request formatting—everything up to the chat API interface works  
-> ⏳ **Under Construction**: Chat API integration (API call execution and response handling)
+> ⏳ **Under Construction**: Chat API integration (API call execution and response handling) + Project-wide Exception Handling
 
 ![Process Flow](bridge/Process%20Structure.png)
 
@@ -14,7 +14,7 @@ Automated research assistant that performs end-to-end web research and prepares 
 
 This project implements a production-style research pipeline in **Blue Prism**. The system executes autonomous research runs from a seed URL, leveraging browser automation, content extraction, and AI-powered analysis to generate comprehensive research reports.
 
-The research controller orchestrates the entire workflow: launching a browser, scraping search results, extracting and cleaning content from multiple pages, formatting prompts for AI analysis, and generating final reports—all without writing to disk. Results live in memory and logs for real-time inspection and debugging.
+The research controller orchestrates the entire workflow: launching a browser, scraping search results, extracting and cleaning content from multiple pages, formatting prompts for AI analysis, and generating final reports. Results live in memory and logs for real-time inspection and debugging.
 
 ---
 
@@ -40,11 +40,11 @@ The system follows a structured workflow:
 **4. AI Client** *(Formatting: ✅ Complete | API Integration: ⏳ Under Construction)*
 - ✅ Formats aggregated content into structured prompt
 - ✅ Constructs OpenAI-compatible JSON request
-- ⏳ Executes API call to AI model (GPT-5-nano) — *under construction*
-- ⏳ Processes AI response — *under construction*
+- ⏳ Executes API call to AI model (GPT-5-nano): *under construction*
+- ⏳ Processes AI response: *under construction*
 
 **5. Output**
-- ⏳ Generates final research report — *pending AI integration*
+- ⏳ Generates final research report: *pending AI integration*
 - ✅ Returns structured JSON payload (ready for API call)
 
 ---
@@ -53,7 +53,7 @@ The system follows a structured workflow:
 
 - **Deterministic Browser Automation**: Chrome/Edge automation without OCR dependencies
 - **Robust Content Extraction**: Custom HTML parsing with error handling
-- **In-Memory Processing**: All data aggregation occurs in memory—no disk writes during execution
+- **In-Memory Processing**: All data aggregation occurs in memory, no disk writes during execution
 - **Structured AI Integration**: Fully formatted OpenAI-compatible JSON requests
 - **Error Resilience**: Per-page failure containment with comprehensive logging
 - **Debug-Friendly**: Real-time inspection of data items and process state
@@ -67,40 +67,6 @@ The system follows a structured workflow:
 - **Browser Automation**: Chrome / Edge
 - **AI Model**: OpenAI GPT-5-nano
 - **Bridge Service**: Python Flask API (see `bridge/` directory)
-
----
-
-## Quick Start
-
-```bash
-git clone https://github.com/yourusername/ai-research-rpa.git
-cd blue-prism-research-agent
-```
-
-### Blue Prism Setup
-
-1. Import `blueprism/AI_Research_Assistant.bprelease` into Blue Prism
-2. Configure process inputs:
-   - `Research_Question`: Your research query
-   - `Num_Pages`: Number of pages to process (default: 5)
-   - `Max_Results`: Maximum search results to collect (default: 20)
-3. Set API configuration (if using bridge service)
-4. Run from Blue Prism Control Room
-
-### Bridge Service (Optional)
-
-For AI integration, see the [bridge setup guide](bridge/SETUP.md) to run the Flask API service that handles OpenAI API interactions.
-
----
-
-## Architecture Notes
-
-- **No Disk Writes**: All processing occurs in memory for performance and simplicity
-- **Isolated AI Client**: The AI formatting and API call stages are modular, allowing provider swapping or mocking
-- **Loop-Based Extraction**: The extraction loop handles URL iteration, content extraction, cleaning, and aggregation in a single controlled flow
-- **Error Handling**: Failures are contained per-page with logging, ensuring partial results are preserved
-
----
 
 ## Author
 
