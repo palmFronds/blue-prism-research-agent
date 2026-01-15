@@ -1,4 +1,4 @@
-# AI Research Assistant – Blue Prism RPA
+# Simple AI Research Assistant – Blue Prism RPA
 
 Automated research assistant that performs end-to-end web research and prepares structured, AI-ready prompts from multiple sources.
 
