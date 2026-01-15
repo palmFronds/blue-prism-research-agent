@@ -1,0 +1,1335 @@
+﻿<process name="ai client" version="1.0" bpversion="7.5.0.17125" cpeversion="10.0.110.0" narrative="" byrefcollection="true" processrunningmessage="" disableversioning="false" type="object" runmode="Exclusive" preferredid="47f9f765-5742-4c79-ba9d-072efb5c1eed">
+  <appdef>
+    <element name="Application Root">
+      <id>51f54430-9c41-4835-8c2a-e1bf424e36bb</id>
+      <type>Application</type>
+      <basetype>Application</basetype>
+      <datatype>unknown</datatype>
+      <diagnose>False</diagnose>
+    </element>
+  </appdef>
+  <view>
+    <camerax>0</camerax>
+    <cameray>0</cameray>
+    <zoom version="2">3.75</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <subsheet subsheetid="654d88cc-e313-481a-a905-f7546093ca53" type="CleanUp" published="True">
+    <name>Clean Up</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="4fe2f96a-8b7c-445f-94b0-f4b3b75d973e" type="Normal" published="False">
+    <name>analyze_text</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-21</cameray>
+      <zoom version="2">3.4375</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="c96d318c-3b34-4f01-b958-2a037c208466" type="Normal" published="True">
+    <name>format_prompt</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-42</cameray>
+      <zoom version="2">3.75</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="bf6edd4d-0b06-4e79-996f-63f21ef2591d" type="Normal" published="True">
+    <name>api_call</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-42</cameray>
+      <zoom version="2">4.0625</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="8e741bdc-e96b-473b-869c-57cdca11c2d6" type="Normal" published="False">
+    <name>Action 4</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">3.4375</zoom>
+    </view>
+  </subsheet>
+  <stage stageid="66ce1e45-64f2-4108-802d-e38a2dd933e4" name="Start" type="Start">
+    <loginhibit />
+    <display x="15" y="-105" />
+    <onsuccess>21bb7dec-4884-4800-ac97-8ad9c6ce52e4</onsuccess>
+  </stage>
+  <stage stageid="21bb7dec-4884-4800-ac97-8ad9c6ce52e4" name="End" type="End">
+    <loginhibit />
+    <display x="15" y="90" />
+  </stage>
+  <stage stageid="7738f544-c00a-4a6a-899c-b2b9b385f570" name="Stage1" type="ProcessInfo">
+    <display x="-195" y="-120" w="150" h="90" />
+    <references>
+      <reference>System.dll</reference>
+      <reference>System.Data.dll</reference>
+      <reference>System.Xml.dll</reference>
+      <reference>System.Drawing.dll</reference>
+    </references>
+    <imports>
+      <import>System</import>
+      <import>System.Drawing</import>
+      <import>System.Data</import>
+      <import>System.Net</import>
+      <import>System.Text</import>
+      <import>System.Text.RegularExpressions</import>
+      <import>System.Net</import>
+      <import>System.IO</import>
+      <import>System.Text</import>
+    </imports>
+    <language>csharp</language>
+    <pythondllpath>C:\blueprism\python_env\Scripts\python310.dll</pythondllpath>
+    <pythonenvpath>C:\blueprism\python_env</pythonenvpath>
+    <globalcode><![CDATA[]]></globalcode>
+    <code><![CDATA[]]></code>
+  </stage>
+  <stage stageid="81e7258f-1656-4c7c-8914-c626495a0829" name="Clean Up" type="SubSheetInfo">
+    <subsheetid>654d88cc-e313-481a-a905-f7546093ca53</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="68b1d276-c65b-4aac-8264-ecb846073801" name="Start" type="Start">
+    <subsheetid>654d88cc-e313-481a-a905-f7546093ca53</subsheetid>
+    <loginhibit />
+    <display x="15" y="-105" />
+    <onsuccess>42f6a6d1-f84f-42b3-93bf-af238587179c</onsuccess>
+  </stage>
+  <stage stageid="42f6a6d1-f84f-42b3-93bf-af238587179c" name="End" type="End">
+    <subsheetid>654d88cc-e313-481a-a905-f7546093ca53</subsheetid>
+    <loginhibit />
+    <display x="15" y="90" />
+  </stage>
+  <stage stageid="9af654ca-efcf-491b-95e2-ebbe1fe28c58" name="analyze_text" type="SubSheetInfo">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <narrative>tested.</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="985e5af4-aba6-4772-895b-2f4ad4d99ca9" name="Start" type="Start">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="15" y="-105" />
+    <inputs>
+      <input type="text" name="Instruction" stage="instruction" />
+      <input type="text" name="Input_Data" stage="input data" />
+    </inputs>
+    <onsuccess>809ecdb3-52a0-44cf-a8c6-c48b6e0acdc5</onsuccess>
+  </stage>
+  <stage stageid="e1d46a6c-e593-4059-8834-381b72541472" name="End" type="End">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="0" y="75" />
+    <outputs>
+      <output type="text" name="AI_output" stage="ai_output" fromStage="ai_output" />
+      <output type="flag" name="parse_OK" stage="parse_OK" />
+    </outputs>
+  </stage>
+  <stage stageid="11d30f30-0bbb-4ca0-9d39-2beb12b11da0" name="Clean Up" type="Note">
+    <subsheetid>654d88cc-e313-481a-a905-f7546093ca53</subsheetid>
+    <narrative>Clean Up Page
+
+This is an optional page where you might choose to perform some finalisation (or "cleanup") tasks as your business object is closed down.
+
+The cleanup action will be called automatically immediately after closing your business object at the end of a business process.
+
+You will not be able to call this action from a business process, nor will it be called at any other time than before the disposal of the business object.</narrative>
+    <display x="-180" y="60" w="180" h="230" />
+  </stage>
+  <stage stageid="26565e20-d184-48f1-8c7e-d25826f1997e" name="Initialise" type="Note">
+    <narrative>Initialise Page
+
+This is an optional page where you might choose to perform some initialisation tasks after your business object is loaded.
+
+The initialise action will be called automatically immediately after loading your business object.
+
+You will not be able to call this action from a business process, nor will it be called at any other time than after the creation of the object.</narrative>
+    <display x="-180" y="30" w="180" h="180" />
+  </stage>
+  <stage stageid="809ecdb3-52a0-44cf-a8c6-c48b6e0acdc5" name="build_request" type="Code">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="15" y="-45" w="90" h="30" />
+    <inputs>
+      <input type="text" name="Input_Text" expr="[input data]" />
+      <input type="text" name="Instruction" expr="[instruction]" />
+      <input type="number" name="Temperature" expr="-1" />
+      <input type="number" name="Max_Output_Tokens" expr="0" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Request_JSON" stage="request_body" />
+    </outputs>
+    <onsuccess>7e84b91c-227a-44f7-8052-326ed5d5f357</onsuccess>
+    <code><![CDATA[// Build the request body for OpenAI Responses API (gpt-5-nano)
+// This mirrors: client.CreateResponse("prompt text")
+// But outputs raw JSON for HTTP POST
+
+var requestBody = new System.Text.StringBuilder();
+
+requestBody.Append("{");
+requestBody.Append("\"model\":\"gpt-5-nano\",");
+requestBody.Append("\"input\":[");
+
+// System message (optional but recommended for consistency)
+requestBody.Append("{\"role\":\"system\",");
+requestBody.Append("\"content\":\"You are a precise research assistant.\"},");
+
+// User message: combine instruction + input text
+requestBody.Append("{\"role\":\"user\",");
+requestBody.Append("\"content\":");
+
+// Escape and combine instruction + input
+string combinedPrompt = Instruction + "\n\n" + Input_Text;
+string escapedPrompt = EscapeJson(combinedPrompt);
+
+requestBody.Append("\"" + escapedPrompt + "\"}");
+
+// Close input array
+requestBody.Append("]");
+
+// Add optional parameters if provided
+if (Max_Output_Tokens > 0)
+{
+    requestBody.Append(",\"max_output_tokens\":" + Max_Output_Tokens.ToString());
+}
+
+if (Temperature >= 0)
+{
+    requestBody.Append(",\"temperature\":" + Temperature.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture));
+}
+
+// Close request body
+requestBody.Append("}");
+
+Request_JSON = requestBody.ToString();
+
+// Helper function for JSON escaping
+string EscapeJson(string input)
+{
+    if (string.IsNullOrEmpty(input)) return "";
+    
+    return input
+        .Replace("\\", "\\\\")  // Backslash
+        .Replace("\"", "\\\"")  // Quote
+        .Replace("\n", "\\n")   // Newline
+        .Replace("\r", "\\r")   // Carriage return
+        .Replace("\t", "\\t")   // Tab
+        .Replace("\b", "\\b")   // Backspace
+        .Replace("\f", "\\f");  // Form feed
+}]]></code>
+  </stage>
+  <stage stageid="463549e8-e40d-4d21-b458-a46ef585f890" name="instruction" type="Data">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="105" y="-105" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="7453ae46-61a8-4066-9242-8467552b6cf1" name="input data" type="Data">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="210" y="15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="ca7dd8fa-36b0-4031-82bb-075e18b67cc4" name="request_body" type="Data">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="210" y="-30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="7e84b91c-227a-44f7-8052-326ed5d5f357" name="ex_call" type="Code">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <narrative>guess</narrative>
+    <display x="135" y="-45" />
+    <inputs>
+      <input type="text" name="Request_URL" expr="&quot;https://api.openai.com/v1/responses&quot;" />
+      <input type="text" name="Request_JSON" expr="[request_body]" />
+      <input type="text" name="API_Key" expr="[chat api key]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Response_Body" stage="response_body" />
+      <output type="number" name="Status_Code" stage="status_code" />
+    </outputs>
+    <onsuccess>7c3f92af-b059-4408-b6ef-d53eb2b140d1</onsuccess>
+    <code><![CDATA[var webClient = new WebClient();
+
+try
+{
+    // Set headers
+    webClient.Headers.Add("Authorization", "Bearer " + API_Key);
+    webClient.Headers.Add("Content-Type", "application/json");
+    
+    // Make POST request
+    Response_Body = webClient.UploadString(Request_URL, "POST", Request_JSON);
+    
+    // Success
+    Status_Code = 200;
+}
+catch (WebException ex)
+{
+    // Capture HTTP error
+    if (ex.Response != null)
+    {
+        var httpResponse = (HttpWebResponse)ex.Response;
+        Status_Code = (int)httpResponse.StatusCode;
+        
+        using (var reader = new System.IO.StreamReader(httpResponse.GetResponseStream()))
+        {
+            Response_Body = reader.ReadToEnd();
+        }
+    }
+    else
+    {
+        Status_Code = 0;
+        Response_Body = "Error: " + ex.Message;
+    }
+}
+catch (Exception ex)
+{
+    Status_Code = 0;
+    Response_Body = "Error: " + ex.Message;
+}
+finally
+{
+    webClient.Dispose();
+}]]></code>
+  </stage>
+  <stage stageid="f375b417-d4e9-4bea-9b46-af968b64f114" name="chat api key" type="Data">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="195" y="-105" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <exposure>Environment</exposure>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="c4c69fc8-1583-4f90-a5d8-b595806d86ae" name="status_code" type="Data">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="285" y="-30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="7c3f92af-b059-4408-b6ef-d53eb2b140d1" name="if_valid" type="Decision">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="135" y="15" />
+    <decision expression="[status_code] = 200" />
+    <ontrue>17456e97-baaf-4bf5-94e4-230f9bc56ee8</ontrue>
+    <onfalse>88281187-1ad8-4435-a141-94862486a68e</onfalse>
+  </stage>
+  <stage stageid="17456e97-baaf-4bf5-94e4-230f9bc56ee8" name="Anchor1" type="Anchor">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="75" y="15" w="10" h="10" />
+    <onsuccess>41b8df87-3d8b-4176-8961-bc09c8f318c5</onsuccess>
+  </stage>
+  <stage stageid="88281187-1ad8-4435-a141-94862486a68e" name="Anchor2" type="Anchor">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="135" y="75" w="10" h="10" />
+    <onsuccess>e1d46a6c-e593-4059-8834-381b72541472</onsuccess>
+  </stage>
+  <stage stageid="585b6731-52f7-49cf-bc32-da9dc5a80d71" name="response_body" type="Data">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="285" y="15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="41b8df87-3d8b-4176-8961-bc09c8f318c5" name="parse_response" type="Code">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="0" y="15" w="90" h="30" />
+    <inputs>
+      <input type="text" name="Response_Body" expr="[response_body]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="AI_Output_Text" stage="ai_output" />
+      <output type="flag" name="Parse_OK" stage="parse_OK" />
+    </outputs>
+    <onsuccess>e1d46a6c-e593-4059-8834-381b72541472</onsuccess>
+    <code><![CDATA[Parse_OK = false;
+AI_Output_Text = "";
+
+try
+{
+    // First try: simple output_text field
+    Match simpleMatch = Regex.Match(Response_Body, @"""output_text""\s*:\s*""((?:[^""\\]|\\.)*)""");
+    
+    if (simpleMatch.Success)
+    {
+        AI_Output_Text = UnescapeJson(simpleMatch.Groups[1].Value);
+        Parse_OK = true;
+    }
+    else
+    {
+        // Second try: extract all "text" fields from output structure
+        MatchCollection textMatches = Regex.Matches(Response_Body, @"""text""\s*:\s*""((?:[^""\\]|\\.)*)""");
+        
+        if (textMatches.Count > 0)
+        {
+            var sb = new System.Text.StringBuilder();
+            
+            foreach (Match match in textMatches)
+            {
+                string textValue = UnescapeJson(match.Groups[1].Value);
+                if (!string.IsNullOrEmpty(textValue))
+                {
+                    sb.AppendLine(textValue);
+                }
+            }
+            
+            AI_Output_Text = sb.ToString().Trim();
+            Parse_OK = !string.IsNullOrEmpty(AI_Output_Text);
+        }
+    }
+}
+catch (Exception ex)
+{
+    Parse_OK = false;
+    AI_Output_Text = "Parse error: " + ex.Message;
+}
+
+// Helper function to unescape JSON strings
+string UnescapeJson(string input)
+{
+    if (string.IsNullOrEmpty(input)) return "";
+    
+    return input
+        .Replace("\\\"", "\"")
+        .Replace("\\\\", "\\")
+        .Replace("\\n", "\n")
+        .Replace("\\r", "\r")
+        .Replace("\\t", "\t");
+}]]></code>
+  </stage>
+  <stage stageid="1f4851fa-97dd-47dc-98c6-6c827becc489" name="parse_OK" type="Data">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="-105" y="45" />
+    <datatype>flag</datatype>
+    <initialvalue>False</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="898b8a35-5f3b-4306-8ba2-99b93f874484" name="ai_output" type="Data">
+    <subsheetid>4fe2f96a-8b7c-445f-94b0-f4b3b75d973e</subsheetid>
+    <loginhibit />
+    <display x="-105" y="0" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="8ec3aa1c-2c03-4a02-b193-4dd3b9817c95" name="format_prompt" type="SubSheetInfo">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <display x="-195" y="-105" w="180" h="90" />
+  </stage>
+  <stage stageid="aa816fb5-fe6f-4e6b-a65d-34fec95c4486" name="Start" type="Start">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="-30" y="-105" />
+    <inputs>
+      <input type="collection" name="content_collection" stage="Content_Collection" />
+      <input type="collection" name="headers_collection" stage="Headers_Collection" />
+      <input type="text" name="search_query" stage="Search_Query" />
+    </inputs>
+    <onsuccess>0f4abd13-b15a-4247-a644-ca56f3a88bda</onsuccess>
+  </stage>
+  <stage stageid="517e5b0b-aca5-43a2-8e6f-5b3db1a02224" name="End" type="End">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="-30" y="15" />
+    <outputs>
+      <output type="text" name="Chat_Request" stage="Chat_Request" />
+    </outputs>
+  </stage>
+  <stage stageid="5d95c4fe-2e47-4122-8b34-df1e99c93329" name="Content_Collection" type="Collection">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="-225" y="-15" w="90" h="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="8681df7a-10c5-43b4-b742-2e69ee1c65ab" name="Headers_Collection" type="Collection">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="-225" y="30" w="90" h="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="1a7c8a2d-21f7-4e2c-b03a-d7ed8f81c6d9" name="Search_Query" type="Data">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="-150" y="-15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="0bb62ead-cba0-40a7-97ad-1cb065afef4c" name="Format Prompt" type="Code">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="-30" y="-45" w="90" h="30" />
+    <inputs>
+      <input type="collection" name="content_collection" expr="[Content_Collection]" />
+      <input type="collection" name="headers_collection" expr="[Headers_Collection]" />
+      <input type="text" name="search_query" expr="[Search_Query]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="chat_request_json" stage="Chat_Request" />
+    </outputs>
+    <onsuccess>517e5b0b-aca5-43a2-8e6f-5b3db1a02224</onsuccess>
+    <code><![CDATA[// ====================================
+// Build Responses API Request (CORRECT WIRE FORMAT)
+// Inputs: content_collection, headers_collection, search_query
+// Outputs: chat_request_json
+// ====================================
+
+// VALIDATE INPUTS
+if (string.IsNullOrWhiteSpace(search_query))
+{
+    throw new Exception("search_query is empty!");
+}
+
+if (content_collection == null || content_collection.Rows.Count == 0)
+{
+    throw new Exception("content_collection is empty!");
+}
+
+// Build user message
+System.Text.StringBuilder userMessage = new System.Text.StringBuilder();
+userMessage.AppendLine("Create a comprehensive research report based on these sources.");
+userMessage.AppendLine("");
+userMessage.AppendLine("Research Topic: " + search_query);
+userMessage.AppendLine("");
+userMessage.AppendLine("Include:");
+userMessage.AppendLine("1. Executive Summary");
+userMessage.AppendLine("2. Key Definitions and Concepts");
+userMessage.AppendLine("3. Main Findings");
+userMessage.AppendLine("4. Different Perspectives");
+userMessage.AppendLine("5. Practical Applications");
+userMessage.AppendLine("6. Conclusion");
+userMessage.AppendLine("");
+userMessage.AppendLine("SOURCES:");
+userMessage.AppendLine("");
+
+for (int i = 0; i < content_collection.Rows.Count; i++)
+{
+    string header = headers_collection.Rows[i]["HeaderText"].ToString();
+    string url = content_collection.Rows[i]["URL"].ToString();
+    string content = content_collection.Rows[i]["Content"].ToString();
+    
+    int maxLength = 60000;
+    if (content.Length > maxLength)
+    {
+        content = content.Substring(0, maxLength) + "... [truncated]";
+    }
+    
+    userMessage.AppendLine("[Source " + (i + 1) + "]");
+    userMessage.AppendLine("Title: " + header);
+    userMessage.AppendLine("URL: " + url);
+    userMessage.AppendLine("");
+    userMessage.AppendLine(content);
+    userMessage.AppendLine("");
+    userMessage.AppendLine("---");
+    userMessage.AppendLine("");
+}
+
+// NORMALIZE LINE ENDINGS
+string rawUserContent = userMessage.ToString();
+rawUserContent = rawUserContent.Replace("\r\n", "\n").Replace("\r", "\n");
+
+// ESCAPE FOR JSON
+System.Text.StringBuilder escapedUser = new System.Text.StringBuilder(rawUserContent.Length * 2);
+foreach (char c in rawUserContent)
+{
+    if (c == '\\') escapedUser.Append("\\\\");
+    else if (c == '"') escapedUser.Append("\\\"");
+    else if (c == '\n') escapedUser.Append("\\n");
+    else if (c == '\t') escapedUser.Append("\\t");
+    else if (c < 32) escapedUser.Append("\\u").Append(((int)c).ToString("x4"));
+    else escapedUser.Append(c);
+}
+string userContent = escapedUser.ToString();
+
+// ESCAPE SYSTEM MESSAGE
+string rawSystemContent = "You are a research analyst who synthesizes information from multiple sources into clear, comprehensive reports.";
+rawSystemContent = rawSystemContent.Replace("\r\n", "\n").Replace("\r", "\n");
+
+System.Text.StringBuilder escapedSystem = new System.Text.StringBuilder(rawSystemContent.Length * 2);
+foreach (char c in rawSystemContent)
+{
+    if (c == '\\') escapedSystem.Append("\\\\");
+    else if (c == '"') escapedSystem.Append("\\\"");
+    else if (c == '\n') escapedSystem.Append("\\n");
+    else if (c == '\t') escapedSystem.Append("\\t");
+    else if (c < 32) escapedSystem.Append("\\u").Append(((int)c).ToString("x4"));
+    else escapedSystem.Append(c);
+}
+string systemContent = escapedSystem.ToString();
+
+// ============================================
+// BUILD RESPONSES API JSON (CORRECT WIRE FORMAT)
+// No "type" fields, no arrays in content, just plain strings
+// ============================================
+string combinedPrompt =
+    systemContent +
+    "\\n\\n" +
+    userContent;
+
+System.Text.StringBuilder json = new System.Text.StringBuilder();
+
+json.Append("{");
+json.Append("\"model\":\"gpt-5-nano\",");
+json.Append("\"input\":\"");
+json.Append(combinedPrompt);
+json.Append("\"}");
+    
+chat_request_json = json.ToString();
+
+// SAFETY CHECKS
+if (chat_request_json.Length > 900000)
+{
+    throw new Exception("Request payload exceeds 900KB limit. Current: " + 
+                       (chat_request_json.Length / 1000) + "KB");
+}]]></code>
+  </stage>
+  <stage stageid="41199ddf-820d-4685-abc2-98592a88d8c9" name="Chat_Request" type="Data">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="-150" y="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="7c5e152a-c76e-4c6a-9085-88615fc94fd2" name="Block1" type="Block">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="-285" y="-45" w="180" h="105" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="883716f4-a2b6-4dc5-8531-dc4ffa9d4058" name="api_call" type="SubSheetInfo">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <display x="-180" y="-105" w="180" h="90" />
+  </stage>
+  <stage stageid="304294f6-3f93-4b68-806c-bd107faa89da" name="Start" type="Start">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <loginhibit />
+    <display x="-30" y="-135" />
+    <inputs>
+      <input type="text" name="Chat_Request" stage="" />
+    </inputs>
+    <onsuccess>4061b7ba-549d-4c36-b30e-2fba37fcdb93</onsuccess>
+  </stage>
+  <stage stageid="fdeea156-1414-4ed3-a551-268f1a8d29b7" name="End" type="End">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <loginhibit />
+    <display x="-30" y="-15" />
+    <outputs>
+      <output type="text" name="AI_Response" stage="AI_Response" />
+      <output type="text" name="Debug" stage="debug" />
+    </outputs>
+  </stage>
+  <stage stageid="13124583-0c8e-4d85-9484-380b1af713a7" name="Chat_Request" type="Data">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <loginhibit />
+    <display x="-225" y="-15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="f7aff4a3-aceb-44a8-947e-c587eb1c54b4" name="chat api key" type="Data">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <loginhibit />
+    <display x="-150" y="-15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <exposure>Environment</exposure>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="7c885d93-0734-4830-9259-3325d694321c" name="AI_Response" type="Data">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <loginhibit />
+    <display x="-150" y="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="7b1ff3a5-2bad-4e51-a8fe-4e55b8f3e027" name="API_Call" type="Code">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <loginhibit />
+    <display x="-30" y="-75" />
+    <inputs>
+      <input type="text" name="chat_request_json" expr="[Chat_Request]" />
+      <input type="text" name="api_key" expr="[chat api key]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="response_body" stage="AI_Response" />
+      <output type="number" name="status_code" stage="Status_Code" />
+    </outputs>
+    <onsuccess>fdeea156-1414-4ed3-a551-268f1a8d29b7</onsuccess>
+    <code><![CDATA[byte[] bodyBytes = Encoding.UTF8.GetBytes(chat_request_json);
+
+
+string sanitized_json = Regex.Replace(
+    chat_request_json,
+    @"[\u0000-\u0008\u000B\u000C\u000E-\u001F]",
+    ""
+);
+
+chat_request_json = sanitized_json;
+
+HttpWebRequest req = (HttpWebRequest)WebRequest.Create(
+    "https://api.openai.com/v1/responses"
+);
+
+req.Method = "POST";
+req.ContentType = "application/json; charset=utf-8";
+req.ContentLength = bodyBytes.Length;
+req.Headers.Add("Authorization", "Bearer " + api_key);
+
+using (var stream = req.GetRequestStream())
+{
+    stream.Write(bodyBytes, 0, bodyBytes.Length);
+}
+
+using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
+using (var reader = new StreamReader(resp.GetResponseStream(), Encoding.UTF8))
+{
+    response_body = reader.ReadToEnd();
+    status_code = (int)resp.StatusCode;
+}]]></code>
+  </stage>
+  <stage stageid="3073aed3-eca6-4f88-9796-fd3823dd2181" name="Status_Code" type="Data">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <loginhibit />
+    <display x="-225" y="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="4061b7ba-549d-4c36-b30e-2fba37fcdb93" name="Code1" type="Code">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <warningthreshold>5</warningthreshold>
+    <loginhibit />
+    <display x="45" y="-75" />
+    <inputs>
+      <input type="text" name="chat_request_json" expr="[Chat_Request]" />
+      <input type="text" name="api_key" expr="[chat api key]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="response_body" stage="AI_Response" />
+      <output type="number" name="status_code" stage="Status_Code" />
+      <output type="text" name="DebugLog" stage="debug" />
+    </outputs>
+    <onsuccess>fdeea156-1414-4ed3-a551-268f1a8d29b7</onsuccess>
+    <code><![CDATA[// Use a StringBuilder as our "console"
+StringBuilder debug = new StringBuilder();
+
+string url = "https://api.openai.com/v1/responses";
+
+// Log what we're about to send
+debug.AppendLine("=== REQUEST JSON START ===");
+debug.AppendLine(chat_request_json);
+debug.AppendLine("=== REQUEST JSON END ===");
+
+debug.AppendLine("BYTE COUNT (UTF8): " + Encoding.UTF8.GetByteCount(chat_request_json));
+debug.AppendLine("RAW STRING LENGTH: " + chat_request_json.Length);
+
+if (!string.IsNullOrEmpty(chat_request_json))
+{
+    debug.AppendLine("FIRST CHAR CODE: " + (int)chat_request_json[0]);
+}
+else
+{
+    debug.AppendLine("ERROR: chat_request_json is EMPTY");
+}
+
+HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+req.Method = "POST";
+req.ContentType = "application/json";
+req.Accept = "application/json";
+req.Headers.Add("Authorization", "Bearer " + api_key);
+
+// IMPORTANT: do NOT set ContentLength manually
+
+try
+{
+    using (var stream = req.GetRequestStream())
+    using (var writer = new StreamWriter(stream, Encoding.UTF8))
+    {
+        writer.Write(chat_request_json);
+    }
+
+    using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
+    using (var reader = new StreamReader(resp.GetResponseStream(), Encoding.UTF8))
+    {
+        response_body = reader.ReadToEnd();
+        status_code = (int)resp.StatusCode;
+
+        debug.AppendLine("=== RESPONSE OK ===");
+        debug.AppendLine("STATUS: " + status_code);
+        debug.AppendLine("RESPONSE BODY:");
+        debug.AppendLine(response_body);
+    }
+}
+catch (WebException ex)
+{
+    debug.AppendLine("=== REQUEST FAILED ===");
+
+    if (ex.Response != null)
+    {
+        using (var errResp = (HttpWebResponse)ex.Response)
+        using (var reader = new StreamReader(errResp.GetResponseStream(), Encoding.UTF8))
+        {
+            string errorBody = reader.ReadToEnd();
+
+            status_code = (int)errResp.StatusCode;
+            response_body = errorBody;
+
+            debug.AppendLine("STATUS: " + status_code);
+            debug.AppendLine("ERROR BODY:");
+            debug.AppendLine(errorBody);
+        }
+    }
+    else
+    {
+        status_code = -1;
+        response_body = ex.ToString();
+
+        debug.AppendLine("NO RESPONSE BODY");
+        debug.AppendLine(ex.ToString());
+    }
+}
+
+// Expose our "console" to Blue Prism
+DebugLog = debug.ToString();]]></code>
+  </stage>
+  <stage stageid="0f4abd13-b15a-4247-a644-ca56f3a88bda" name="Code2" type="Code">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="75" y="-45" w="90" h="30" />
+    <inputs>
+      <input type="collection" name="content_collection" expr="[Content_Collection]" />
+      <input type="collection" name="headers_collection" expr="[Headers_Collection]" />
+      <input type="text" name="search_query" expr="[Search_Query]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="chat_request_json" stage="Chat_Request" />
+    </outputs>
+    <onsuccess>517e5b0b-aca5-43a2-8e6f-5b3db1a02224</onsuccess>
+    <code><![CDATA[// ====================================
+// Build Responses API Request (CORRECTED - ESCAPE ONCE)
+// Inputs: content_collection, headers_collection, search_query
+// Outputs: chat_request_json
+// ====================================
+
+string JsonEscape(string s)
+{
+    return s
+        .Replace("\\", "\\\\")
+        .Replace("\"", "\\\"")
+        .Replace("\r", "")
+        .Replace("\n", "\\n")
+        .Replace("\t", "\\t");
+}
+
+// VALIDATE INPUTS
+if (string.IsNullOrWhiteSpace(search_query))
+{
+    throw new Exception("search_query is empty!");
+}
+
+if (content_collection == null || content_collection.Rows.Count == 0)
+{
+    throw new Exception("content_collection is empty!");
+}
+
+// Build user message (RAW - NO ESCAPING YET)
+System.Text.StringBuilder userMessage = new System.Text.StringBuilder();
+userMessage.AppendLine("Create a comprehensive research report based on these sources.");
+userMessage.AppendLine("");
+userMessage.AppendLine("Research Topic: " + search_query);
+userMessage.AppendLine("");
+userMessage.AppendLine("Include:");
+userMessage.AppendLine("1. Executive Summary");
+userMessage.AppendLine("2. Key Definitions and Concepts");
+userMessage.AppendLine("3. Main Findings");
+userMessage.AppendLine("4. Different Perspectives");
+userMessage.AppendLine("5. Practical Applications");
+userMessage.AppendLine("6. Conclusion");
+userMessage.AppendLine("");
+userMessage.AppendLine("SOURCES:");
+userMessage.AppendLine("");
+
+// Add sources with AGGRESSIVE cleaning
+for (int i = 0; i < content_collection.Rows.Count; i++)
+{
+    string header = headers_collection.Rows[i]["HeaderText"].ToString();
+    string url = content_collection.Rows[i]["URL"].ToString();
+    string content = content_collection.Rows[i]["Content"].ToString();
+    
+    // AGGRESSIVE size limit to avoid payload bloat
+    int maxLength = 30000; // Cut from 60k to 30k
+    if (content.Length > maxLength)
+    {
+        content = content.Substring(0, maxLength) + "... [truncated for length]";
+    }
+    
+    userMessage.AppendLine("[Source " + (i + 1) + "]");
+    userMessage.AppendLine("Title: " + header);
+    userMessage.AppendLine("URL: " + url);
+    userMessage.AppendLine("");
+    userMessage.AppendLine(content);
+    userMessage.AppendLine("");
+    userMessage.AppendLine("---");
+    userMessage.AppendLine("");
+}
+
+// Get RAW strings (normalize line endings but DON'T escape yet)
+string rawSystemContent = "You are a research analyst who synthesizes information from multiple sources into clear, comprehensive reports.";
+string rawUserContent = userMessage.ToString();
+
+// Normalize line endings (Windows → Unix)
+rawSystemContent = rawSystemContent.Replace("\r\n", "\n").Replace("\r", "\n");
+rawUserContent = rawUserContent.Replace("\r\n", "\n").Replace("\r", "\n");
+
+// Unicode normalization (critical for web content)
+rawSystemContent = rawSystemContent.Normalize(System.Text.NormalizationForm.FormC);
+rawUserContent = rawUserContent.Normalize(System.Text.NormalizationForm.FormC);
+
+// ============================================
+// COMBINE RAW (before escaping)
+// ============================================
+string combinedRaw = rawSystemContent + "\n\n" + rawUserContent;
+
+// Payload size check BEFORE escaping
+if (combinedRaw.Length > 200000)
+{
+    throw new Exception("Combined prompt too large: " + (combinedRaw.Length / 1000) + "KB. Reduce source content.");
+}
+
+// ============================================
+// ESCAPE ONCE (at the very end)
+// ============================================
+string escapedPrompt = JsonEscape(combinedRaw);
+
+chat_request_json =
+"{"
++ "\"model\":\"gpt-5-nano\","
++ "\"input\":["
++ "  {"
++ "    \"role\":\"user\","
++ "    \"content\":["
++ "      {"
++ "        \"type\":\"input_text\","
++ "        \"text\":\"" + escapedPrompt + "\""
++ "      }"
++ "    ]"
++ "  }"
++ "]"
++ "}";]]></code>
+  </stage>
+  <stage stageid="f69965e5-9eb5-4071-a088-c9462f3fb793" name="Code3" type="Code">
+    <subsheetid>c96d318c-3b34-4f01-b958-2a037c208466</subsheetid>
+    <loginhibit />
+    <display x="180" y="-45" w="90" h="30" />
+    <inputs>
+      <input type="collection" name="content_collection" expr="[Content_Collection]" />
+      <input type="collection" name="headers_collection" expr="[Headers_Collection]" />
+      <input type="text" name="search_query" expr="[Search_Query]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="chat_request_json" stage="Chat_Request" />
+    </outputs>
+    <code><![CDATA[// ====================================
+// Build Responses API Request (CORRECTED - ESCAPE ONCE)
+// Inputs: content_collection, headers_collection, search_query
+// Outputs: chat_request_json
+// ====================================
+
+string JsonEscape(string s)
+{
+    return s
+        .Replace("\\", "\\\\")
+        .Replace("\"", "\\\"")
+        .Replace("\r", "")
+        .Replace("\n", "\\n")
+        .Replace("\t", "\\t");
+}
+
+// VALIDATE INPUTS
+if (string.IsNullOrWhiteSpace(search_query))
+{
+    throw new Exception("search_query is empty!");
+}
+
+if (content_collection == null || content_collection.Rows.Count == 0)
+{
+    throw new Exception("content_collection is empty!");
+}
+
+// Build user message (RAW - NO ESCAPING YET)
+System.Text.StringBuilder userMessage = new System.Text.StringBuilder();
+userMessage.AppendLine("Create a comprehensive research report based on these sources.");
+userMessage.AppendLine("");
+userMessage.AppendLine("Research Topic: " + search_query);
+userMessage.AppendLine("");
+userMessage.AppendLine("Include:");
+userMessage.AppendLine("1. Executive Summary");
+userMessage.AppendLine("2. Key Definitions and Concepts");
+userMessage.AppendLine("3. Main Findings");
+userMessage.AppendLine("4. Different Perspectives");
+userMessage.AppendLine("5. Practical Applications");
+userMessage.AppendLine("6. Conclusion");
+userMessage.AppendLine("");
+userMessage.AppendLine("SOURCES:");
+userMessage.AppendLine("");
+
+// Add sources with AGGRESSIVE cleaning
+for (int i = 0; i < content_collection.Rows.Count; i++)
+{
+    string header = headers_collection.Rows[i]["HeaderText"].ToString();
+    string url = content_collection.Rows[i]["URL"].ToString();
+    string content = content_collection.Rows[i]["Content"].ToString();
+    
+    // AGGRESSIVE size limit to avoid payload bloat
+    int maxLength = 30000; // Cut from 60k to 30k
+    if (content.Length > maxLength)
+    {
+        content = content.Substring(0, maxLength) + "... [truncated for length]";
+    }
+    
+    userMessage.AppendLine("[Source " + (i + 1) + "]");
+    userMessage.AppendLine("Title: " + header);
+    userMessage.AppendLine("URL: " + url);
+    userMessage.AppendLine("");
+    userMessage.AppendLine(content);
+    userMessage.AppendLine("");
+    userMessage.AppendLine("---");
+    userMessage.AppendLine("");
+}
+
+// Get RAW strings (normalize line endings but DON'T escape yet)
+string rawSystemContent = "You are a research analyst who synthesizes information from multiple sources into clear, comprehensive reports.";
+string rawUserContent = userMessage.ToString();
+
+// Normalize line endings (Windows → Unix)
+rawSystemContent = rawSystemContent.Replace("\r\n", "\n").Replace("\r", "\n");
+rawUserContent = rawUserContent.Replace("\r\n", "\n").Replace("\r", "\n");
+
+// Unicode normalization (critical for web content)
+rawSystemContent = rawSystemContent.Normalize(System.Text.NormalizationForm.FormC);
+rawUserContent = rawUserContent.Normalize(System.Text.NormalizationForm.FormC);
+
+// ============================================
+// COMBINE RAW (before escaping)
+// ============================================
+string combinedRaw = rawSystemContent + "\n\n" + rawUserContent;
+
+// Payload size check BEFORE escaping
+if (combinedRaw.Length > 200000)
+{
+    throw new Exception("Combined prompt too large: " + (combinedRaw.Length / 1000) + "KB. Reduce source content.");
+}
+
+// ============================================
+// ESCAPE ONCE (at the very end)
+// ============================================
+string escapedPrompt = JsonEscape(combinedRaw);
+
+var payload = new Dictionary<string, object>
+{
+    { "model", "gpt-5-nano" },
+    { "input", scrapedText }   // raw scraped text
+};
+
+var serializer = new JavaScriptSerializer();
+string chat_request_json = serializer.Serialize(payload);]]></code>
+  </stage>
+  <stage stageid="edfe8709-751f-47c5-81bd-227fbfda40df" name="debug" type="Data">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <loginhibit />
+    <display x="75" y="-30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="808ffbf6-369c-4154-a57b-92983e1b3e59" name="Code4" type="Code">
+    <subsheetid>bf6edd4d-0b06-4e79-996f-63f21ef2591d</subsheetid>
+    <loginhibit />
+    <display x="120" y="-75" />
+    <inputs>
+      <input type="text" name="chat_request_json" expr="[Chat_Request]" />
+      <input type="text" name="api_key" expr="[chat api key]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="response_body" stage="AI_Response" />
+      <output type="number" name="status_code" stage="Status_Code" />
+      <output type="text" name="DebugLog" stage="debug" />
+    </outputs>
+    <code><![CDATA[// Use a StringBuilder as our "console"
+StringBuilder debug = new StringBuilder();
+
+string url = "https://api.openai.com/v1/responses";
+
+// Log what we're about to send
+debug.AppendLine("=== REQUEST JSON START ===");
+debug.AppendLine(chat_request_json);
+debug.AppendLine("=== REQUEST JSON END ===");
+
+debug.AppendLine("BYTE COUNT (UTF8): " + Encoding.UTF8.GetByteCount(chat_request_json));
+debug.AppendLine("RAW STRING LENGTH: " + chat_request_json.Length);
+
+if (!string.IsNullOrEmpty(chat_request_json))
+{
+    debug.AppendLine("FIRST CHAR CODE: " + (int)chat_request_json[0]);
+}
+else
+{
+    debug.AppendLine("ERROR: chat_request_json is EMPTY");
+}
+
+HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+req.Method = "POST";
+req.ContentType = "application/json";
+req.Accept = "application/json";
+req.Headers.Add("Authorization", "Bearer " + api_key);
+
+// IMPORTANT: do NOT set ContentLength manually
+
+try
+{
+    using (var stream = req.GetRequestStream())
+    using (var writer = new StreamWriter(stream, Encoding.UTF8))
+    {
+        writer.Write(chat_request_json);
+    }
+
+    using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
+    using (var reader = new StreamReader(resp.GetResponseStream(), Encoding.UTF8))
+    {
+        response_body = reader.ReadToEnd();
+        status_code = (int)resp.StatusCode;
+
+        debug.AppendLine("=== RESPONSE OK ===");
+        debug.AppendLine("STATUS: " + status_code);
+        debug.AppendLine("RESPONSE BODY:");
+        debug.AppendLine(response_body);
+    }
+}
+catch (WebException ex)
+{
+    debug.AppendLine("=== REQUEST FAILED ===");
+
+    if (ex.Response != null)
+    {
+        using (var errResp = (HttpWebResponse)ex.Response)
+        using (var reader = new StreamReader(errResp.GetResponseStream(), Encoding.UTF8))
+        {
+            string errorBody = reader.ReadToEnd();
+
+            status_code = (int)errResp.StatusCode;
+            response_body = errorBody;
+
+            debug.AppendLine("STATUS: " + status_code);
+            debug.AppendLine("ERROR BODY:");
+            debug.AppendLine(errorBody);
+        }
+    }
+    else
+    {
+        status_code = -1;
+        response_body = ex.ToString();
+
+        debug.AppendLine("NO RESPONSE BODY");
+        debug.AppendLine(ex.ToString());
+    }
+}
+
+// Expose our "console" to Blue Prism
+DebugLog = debug.ToString();]]></code>
+  </stage>
+  <stage stageid="232205ae-0314-45f3-aa6c-f06a1ff5029f" name="Action 4" type="SubSheetInfo">
+    <subsheetid>8e741bdc-e96b-473b-869c-57cdca11c2d6</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="8f5c9655-97f2-404a-ad3a-7802da3aa217" name="Start" type="Start">
+    <subsheetid>8e741bdc-e96b-473b-869c-57cdca11c2d6</subsheetid>
+    <loginhibit />
+    <display x="15" y="-105" />
+  </stage>
+  <stage stageid="45b399d9-4ccf-491c-b03d-c592a8974b33" name="End" type="End">
+    <subsheetid>8e741bdc-e96b-473b-869c-57cdca11c2d6</subsheetid>
+    <loginhibit />
+    <display x="15" y="15" />
+  </stage>
+  <stage stageid="3cb91be7-b21f-4910-9a18-72205cd601d2" name="Code5" type="Code">
+    <subsheetid>8e741bdc-e96b-473b-869c-57cdca11c2d6</subsheetid>
+    <loginhibit />
+    <display x="0" y="-45" />
+    <inputs>
+      <input type="text" name="api_key" expr="[chat api key]" />
+      <input type="text" name="chat_request_json" expr="[Chat_Request]" />
+    </inputs>
+    <outputs>
+      <output type="number" name="status_code" stage="Status_Code" />
+      <output type="text" name="response_body" stage="AI_Response" />
+      <output type="text" name="DebugLog" stage="debug" />
+    </outputs>
+    <code><![CDATA[// Use a StringBuilder as our "console"
+StringBuilder debug = new StringBuilder();
+
+string url = "https://api.openai.com/v1/responses";
+
+// Log what we're about to send
+debug.AppendLine("=== REQUEST JSON START ===");
+debug.AppendLine(chat_request_json);
+debug.AppendLine("=== REQUEST JSON END ===");
+
+debug.AppendLine("BYTE COUNT (UTF8): " + Encoding.UTF8.GetByteCount(chat_request_json));
+debug.AppendLine("RAW STRING LENGTH: " + chat_request_json.Length);
+
+if (!string.IsNullOrEmpty(chat_request_json))
+{
+    debug.AppendLine("FIRST CHAR CODE: " + (int)chat_request_json[0]);
+}
+else
+{
+    debug.AppendLine("ERROR: chat_request_json is EMPTY");
+}
+
+HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+req.Method = "POST";
+req.ContentType = "application/json";
+req.Accept = "application/json";
+req.Headers.Add("Authorization", "Bearer " + api_key);
+
+// IMPORTANT: do NOT set ContentLength manually
+
+try
+{
+    using (var stream = req.GetRequestStream())
+    using (var writer = new StreamWriter(stream, Encoding.UTF8))
+    {
+        writer.Write(chat_request_json);
+    }
+
+    using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
+    using (var reader = new StreamReader(resp.GetResponseStream(), Encoding.UTF8))
+    {
+        response_body = reader.ReadToEnd();
+        status_code = (int)resp.StatusCode;
+
+        debug.AppendLine("=== RESPONSE OK ===");
+        debug.AppendLine("STATUS: " + status_code);
+        debug.AppendLine("RESPONSE BODY:");
+        debug.AppendLine(response_body);
+    }
+}
+catch (WebException ex)
+{
+    debug.AppendLine("=== REQUEST FAILED ===");
+
+    if (ex.Response != null)
+    {
+        using (var errResp = (HttpWebResponse)ex.Response)
+        using (var reader = new StreamReader(errResp.GetResponseStream(), Encoding.UTF8))
+        {
+            string errorBody = reader.ReadToEnd();
+
+            status_code = (int)errResp.StatusCode;
+            response_body = errorBody;
+
+            debug.AppendLine("STATUS: " + status_code);
+            debug.AppendLine("ERROR BODY:");
+            debug.AppendLine(errorBody);
+        }
+    }
+    else
+    {
+        status_code = -1;
+        response_body = ex.ToString();
+
+        debug.AppendLine("NO RESPONSE BODY");
+        debug.AppendLine(ex.ToString());
+    }
+}
+
+// Expose our "console" to Blue Prism
+DebugLog = debug.ToString();]]></code>
+  </stage>
+  <stage stageid="bca95ef5-60df-4f09-81c4-ccdec4146581" name="Chat_Request" type="Data">
+    <subsheetid>8e741bdc-e96b-473b-869c-57cdca11c2d6</subsheetid>
+    <loginhibit />
+    <display x="-210" y="15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="024f9dd9-0979-4f43-b681-717006b9f7e3" name="chat api key" type="Data">
+    <subsheetid>8e741bdc-e96b-473b-869c-57cdca11c2d6</subsheetid>
+    <loginhibit />
+    <display x="-135" y="15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <exposure>Environment</exposure>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="cc1de31b-7ab2-4342-8372-3e982f00c97e" name="AI_Response" type="Data">
+    <subsheetid>8e741bdc-e96b-473b-869c-57cdca11c2d6</subsheetid>
+    <loginhibit />
+    <display x="-135" y="60" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="1c4fb7b5-227c-447d-8f99-c6c422d62d38" name="Status_Code" type="Data">
+    <subsheetid>8e741bdc-e96b-473b-869c-57cdca11c2d6</subsheetid>
+    <loginhibit />
+    <display x="-210" y="60" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="cb9713d5-f2c9-410e-b480-99bc0e7d4fa1" name="debug" type="Data">
+    <subsheetid>8e741bdc-e96b-473b-869c-57cdca11c2d6</subsheetid>
+    <loginhibit />
+    <display x="165" y="-15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+</process>

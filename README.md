@@ -2,6 +2,10 @@
 
 Automated research assistant that performs end-to-end web research and prepares structured, AI-ready prompts from multiple sources.
 
+> **⚠️ Current Status**  
+> ✅ **Complete & Functional**: Browser automation, search execution, content extraction, cleaning, aggregation, and JSON request formatting—everything up to the chat API interface works  
+> ⏳ **Under Construction**: Chat API integration (API call execution and response handling)
+
 ![Process Flow](bridge/Process%20Structure.png)
 
 ---
@@ -33,15 +37,15 @@ The system follows a structured workflow:
 - Adds processed content to in-memory collection
 - Iterates through URLs until page count limit is reached
 
-**4. AI Client**
-- Formats aggregated content into structured prompt
-- Constructs OpenAI-compatible JSON request
-- Executes API call to AI model (GPT-5-nano)
-- Processes AI response
+**4. AI Client** *(Formatting: ✅ Complete | API Integration: ⏳ Under Construction)*
+- ✅ Formats aggregated content into structured prompt
+- ✅ Constructs OpenAI-compatible JSON request
+- ⏳ Executes API call to AI model (GPT-5-nano) — *under construction*
+- ⏳ Processes AI response — *under construction*
 
 **5. Output**
-- Generates final research report
-- Returns structured results
+- ⏳ Generates final research report — *pending AI integration*
+- ✅ Returns structured JSON payload (ready for API call)
 
 ---
 
