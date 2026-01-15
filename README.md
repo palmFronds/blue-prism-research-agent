@@ -1,102 +1,105 @@
-# AI Research Assistant - Blue Prism RPA
-Automated research assistant that searches Google, extracts content from top results, and synthesizes comprehensive research reports.
+# AI Research Assistant – Blue Prism RPA
 
-![Process Flow](docs/workflow_diagram.png)
+Automated research assistant that performs end-to-end web research and prepares structured, AI-ready prompts from multiple sources.
 
-## ✦  Features
+![Process Flow](bridge/Process%20Structure.png)
 
-- **Automated Web Research**: Launches browser, executes Google searches, navigates to top results
-- **Intelligent Content Extraction**: Custom HTML parsing for Google results and article content
-- **AI-Powered Synthesis**: Integrates with OpenAI GPT-5-nano for multi-source analysis
-- **Professional Output**: Generates formatted reports with citations
+---
 
-## ✦  Architecture
+## Overview
 
-[Google Search] → [Parse Results] → [Extract Content] 
-                        ↓
-                  [AI Analysis] → [Generate Report]
+This project implements a production-style research pipeline in **Blue Prism**. The system executes autonomous research runs from a seed URL, leveraging browser automation, content extraction, and AI-powered analysis to generate comprehensive research reports.
 
-**✦ Tech Stack:**
-- Blue Prism 7.x (RPA Platform)
-- OpenAI GPT-5-nano API
-- C# .NET (Code Stages)
-- Chrome/Edge Browser Automation
+The research controller orchestrates the entire workflow: launching a browser, scraping search results, extracting and cleaning content from multiple pages, formatting prompts for AI analysis, and generating final reports—all without writing to disk. Results live in memory and logs for real-time inspection and debugging.
 
-## ✦  Prerequisites
+---
 
-- Blue Prism 7.0+ installed
-- OpenAI API account & key
-- Chrome or Edge browser
-- Windows 10/11
-- .NET Framework 4.7.2+
+## Process Flow
 
-## ✦  Quick Start
+The system follows a structured workflow:
 
-### 1. Clone Repository
+**1. Initialization**
+- Accepts process inputs: `Research_Question`, `Num_Pages`, `Max_Results`, and `Result_Count`
+- Launches browser automation instance
+
+**2. Browser Scraping**
+- Executes initial scraping operations
+- Retrieves search results and URLs
+
+**3. Extraction Loop**
+- Navigates to each URL in the result set
+- Extracts raw HTML content
+- Cleans and normalizes article text
+- Adds processed content to in-memory collection
+- Iterates through URLs until page count limit is reached
+
+**4. AI Client**
+- Formats aggregated content into structured prompt
+- Constructs OpenAI-compatible JSON request
+- Executes API call to AI model (GPT-5-nano)
+- Processes AI response
+
+**5. Output**
+- Generates final research report
+- Returns structured results
+
+---
+
+## Features
+
+- **Deterministic Browser Automation**: Chrome/Edge automation without OCR dependencies
+- **Robust Content Extraction**: Custom HTML parsing with error handling
+- **In-Memory Processing**: All data aggregation occurs in memory—no disk writes during execution
+- **Structured AI Integration**: Fully formatted OpenAI-compatible JSON requests
+- **Error Resilience**: Per-page failure containment with comprehensive logging
+- **Debug-Friendly**: Real-time inspection of data items and process state
+
+---
+
+## Tech Stack
+
+- **RPA Platform**: Blue Prism 7.x
+- **Code Language**: C# .NET (Code Stages)
+- **Browser Automation**: Chrome / Edge
+- **AI Model**: OpenAI GPT-5-nano
+- **Bridge Service**: Python Flask API (see `bridge/` directory)
+
+---
+
+## Quick Start
+
 ```bash
 git clone https://github.com/yourusername/ai-research-rpa.git
-cd ai-research-rpa
+cd blue-prism-research-agent
 ```
 
-### 2. Import to Blue Prism
-1. Open Blue Prism
-2. File → Import → Release Package
-3. Select `blueprism/AI_Research_Assistant.bprelease`
-4. Import all dependencies
+### Blue Prism Setup
 
-### 3. Configure
-1. Open Process: "AI Research Assistant"
-2. Navigate to **Config** page
-3. Set data items:
-   - `api_key`: Your OpenAI API key
-   - `search_query`: Topic to research
-   - `output_directory`: Where to save reports
+1. Import `blueprism/AI_Research_Assistant.bprelease` into Blue Prism
+2. Configure process inputs:
+   - `Research_Question`: Your research query
+   - `Num_Pages`: Number of pages to process (default: 5)
+   - `Max_Results`: Maximum search results to collect (default: 20)
+3. Set API configuration (if using bridge service)
+4. Run from Blue Prism Control Room
 
-### 4. Run Demo
-```
-Process → Run
-Monitor in Control Room
-Check output in C:\AI_Research_Reports\
-```
+### Bridge Service (Optional)
 
-## ✦  Documentation
+For AI integration, see the [bridge setup guide](bridge/SETUP.md) to run the Flask API service that handles OpenAI API interactions.
 
-- [Setup Guide](config/setup_instructions.md) - Detailed installation
-- [Architecture](docs/architecture.md) - System design & decisions
-- [API Integration](docs/api_integration.md) - OpenAI integration details
-- [Demo Guide](docs/demo_guide.md) - Running the demonstration
+---
 
-## ✦  Demo
+## Architecture Notes
 
-**Watch 3-minute demo:** [demo/demo_video.mp4](demo/demo_video.mp4)
-**Sample Outputs:** Check [sample_outputs/](sample_outputs/) for example reports
+- **No Disk Writes**: All processing occurs in memory for performance and simplicity
+- **Isolated AI Client**: The AI formatting and API call stages are modular, allowing provider swapping or mocking
+- **Loop-Based Extraction**: The extraction loop handles URL iteration, content extraction, cleaning, and aggregation in a single controlled flow
+- **Error Handling**: Failures are contained per-page with logging, ensuring partial results are preserved
 
-## ✦  Key Technical Decisions
+---
 
-### Why Blue Prism?
-- Enterprise-grade RPA platform
-- Strong exception handling
-- Centralized control room
-- Object-based reusability
+## Author
 
-### Why GPT-5-nano Batch API?
-- 400k token context window (fits 5+ full articles)
-- Cost-effective for research synthesis
-- Asynchronous processing for scale
-
-### Custom HTML Parsing vs. OCR
-- Google's consistent structure allows reliable CSS selectors
-- Faster than OCR/vision models
-- More accurate text extraction
-
-## ✦  Performance
-
-| Metric | Value |
-|--------|-------|
-| Avg. Runtime | 60-90 seconds |
-| Sources Analyzed | 5 per query |
-| Success Rate | 95%+ |
-| Token Usage | ~50k-100k per report |
-
-- GitHub: [@palmFronds](https://github.com/palmFronds)
-- LinkedIn: [Dheeraj Aaditya](https://www.linkedin.com/in/dheeraj-aaditya/)
+**Dheeraj Aaditya**  
+GitHub: [@palmFronds](https://github.com/palmFronds)  
+LinkedIn: [Dheeraj Aaditya](https://www.linkedin.com/in/dheeraj-aaditya)
