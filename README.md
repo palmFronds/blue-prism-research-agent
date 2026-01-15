@@ -2,7 +2,7 @@
 
 Automated research assistant that performs end-to-end web research and prepares structured, AI-ready prompts from multiple sources.
 
-**⚠️ Current Status**  
+## ⚠️ Current Status
 > ✅ **Complete & Functional**: Browser automation, search execution, content extraction, cleaning, aggregation, and JSON request formatting—everything up to the chat API interface works  
 > ⏳ **Under Construction**: Chat API integration (API call execution and response handling) + Project-wide Exception Handling
 
