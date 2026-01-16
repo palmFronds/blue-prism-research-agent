@@ -4,7 +4,7 @@ Automated research assistant that performs end-to-end web research and prepares 
 
 ## ⚠️ Current Status
 > ✅ **Complete & Functional**: Browser automation, search execution, content extraction, cleaning, aggregation, and JSON request formatting, everything up to the chat API interface works  
-> ⏳ **Under Construction**: Chat API integration (API call execution and response handling) + Project-wide Exception Handling
+> ⏳ **Under Construction**: Scraping More Than First Search Page + Chat API integration (API call execution and response handling) + Project-wide Exception Handling
 
 ![Process Flow](bridge/Process%20Structure.png)
 
