@@ -1,30 +1,12 @@
-# Research Context Aggregator – Blue Prism RPA
+# Research Context Aggregator: Blue Prism RPA
 
-A deterministic pipeline that gathers, cleans, structures, and packages high-quality research context for downstream consumers. This system produces **context**, not answers.
+A deterministic pipeline that gathers, cleans, structures, and packages high-quality research context for downstream consumers. This system produces **context**.
 
-## What This Is
+## Project Definition
 
-This is a **context aggregation system**, not an AI agent.
+This is a **context aggregation system**. It performs the hardest part of AI-assisted research: assembling clean, reliable, structured context from web sources. The system deliberately stops before reasoning, that responsibility belongs to downstream consumers (chatbots, analysts, LLMs, etc.).
 
-It performs the hardest part of AI-assisted research: assembling clean, reliable, structured context from web sources. The system deliberately stops before reasoning — that responsibility belongs to downstream consumers (chatbots, analysts, LLMs, or humans).
-
----
-
-## Current Status
-
-| Component | Status |
-|-----------|--------|
-| Browser automation | Complete |
-| Search execution | Complete |
-| Content extraction | Complete |
-| Content cleaning | Complete |
-| In-memory aggregation | Complete |
-| Context Pack formatting | Complete |
-| Prompt-ready JSON output | Complete |
-
----
-
-## Why Context Aggregation Beats Agentic Browsing
+## Context Aggregation Over Agentic Browsing
 
 | Agentic Browsing | Context Aggregation |
 |------------------|---------------------|
@@ -38,7 +20,7 @@ It performs the hardest part of AI-assisted research: assembling clean, reliable
 
 ---
 
-## Architecture
+## Overall Architecture
 
 ```
 Research Query
@@ -148,32 +130,6 @@ The aggregation pipeline produces a **Context Pack** containing:
     }
   }
 }
-```
-
-### 2. Human-Readable Markdown
-
-```markdown
-# Research Context: [Query]
-
-## Sources
-
-### Source 1: Article Title
-- URL: https://example.com/article
-- Extracted: 2025-01-15T10:29:45Z
-- Words: 1250
-
-[Content here...]
-
----
-
-## Aggregated Summary
-
-[Combined content from all sources...]
-
-## Statistics
-- Total sources: 5
-- Total words: 6200
-- Extraction success rate: 100%
 ```
 
 ## Features
