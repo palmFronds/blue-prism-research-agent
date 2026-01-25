@@ -2,15 +2,11 @@
 
 A deterministic pipeline that gathers, cleans, structures, and packages high-quality research context for downstream consumers. This system produces **context**, not answers.
 
----
-
 ## What This Is
 
 This is a **context aggregation system**, not an AI agent.
 
 It performs the hardest part of AI-assisted research: assembling clean, reliable, structured context from web sources. The system deliberately stops before reasoning — that responsibility belongs to downstream consumers (chatbots, analysts, LLMs, or humans).
-
-**Key distinction**: Traditional "agentic" systems make decisions. This system makes **data available** for decisions.
 
 ---
 
@@ -39,10 +35,6 @@ It performs the hardest part of AI-assisted research: assembling clean, reliable
 | Model-specific | Model-agnostic |
 | Expensive per-run | Fixed compute cost |
 | "Trust the agent" | "Inspect the data" |
-
-Agentic browsing couples collection with reasoning. This creates unpredictable behavior, debugging nightmares, and vendor lock-in.
-
-Context aggregation **decouples** these concerns. Collect deterministically. Reason separately. Debug each layer independently.
 
 ---
 
@@ -91,10 +83,6 @@ Research Query
    Downstream Consumer
    (Claude, GPT, Analyst, Local Model, etc.)
 ```
-
-**No LLM calls occur anywhere in this pipeline.**
-
----
 
 ## Process Flow
 
@@ -188,43 +176,6 @@ The aggregation pipeline produces a **Context Pack** containing:
 - Extraction success rate: 100%
 ```
 
-### 3. Prompt Templates (Optional)
-
-Templates are provided for common downstream consumers. **These are templates only — no LLM execution occurs.**
-
-**Claude Template:**
-```
-You are analyzing research context on: {{query}}
-
-The following content was gathered from {{source_count}} sources:
-
-{{aggregated_content}}
-
-Based on this context, [USER INSTRUCTION HERE]
-```
-
-**GPT Template:**
-```
-Research context for: {{query}}
-
-Sources analyzed: {{source_count}}
-
-{{aggregated_content}}
-
-[USER INSTRUCTION HERE]
-```
-
-**Local Model Template:**
-```
-### Context
-{{aggregated_content}}
-
-### Task
-[USER INSTRUCTION HERE]
-```
-
----
-
 ## Features
 
 - **Deterministic Execution**: Same input produces same output, every time
@@ -235,8 +186,6 @@ Sources analyzed: {{source_count}}
 - **Debug-Friendly**: Real-time inspection of pipeline state
 - **Structured Data**: Enforced schema for reliable downstream parsing
 
----
-
 ## Tech Stack
 
 - **RPA Platform**: Blue Prism 7.x
@@ -244,11 +193,8 @@ Sources analyzed: {{source_count}}
 - **Browser Automation**: Chrome / Edge
 - **Bridge Service**: Python Flask API (see `bridge/` directory)
 
----
-
 ## Author
 
 **Dheeraj Aaditya**
 GitHub: [@palmFronds](https://github.com/palmFronds)
 LinkedIn: [Dheeraj Aaditya](https://www.linkedin.com/in/dheeraj-aaditya)
-
