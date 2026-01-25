@@ -1,143 +1,158 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code when working with this repository.
 
-## Project Overview
+## Project Identity
 
-A deterministic Blue Prism RPA research agent that navigates Chrome, extracts web content, enriches it with LLM APIs (OpenAI/Anthropic/AWS Bedrock), and manages work through AWS SQS queues with auditable workflows.
+**Research Context Aggregator** — A deterministic pipeline that gathers, cleans, structures, and packages research context for downstream consumers.
 
-**Current State**: Project is in documentation/planning phase - no code has been implemented yet.
+**Critical clarification**: No LLM calls are implemented or required. This system produces context, not answers. Reasoning is delegated to downstream consumers.
 
 ## Architecture
 
 ```
-Blue Prism Bot → AWS API Gateway → Lambda Functions → AWS Services (SQS, DynamoDB, S3)
-                                        ↓
-                              LLM Providers (OpenAI/Anthropic/Bedrock)
+Blue Prism → Browser → Extraction → Cleaning → Structuring → Context Output
 ```
+
+### Pipeline Stages
+
+1. **Blue Prism Controller**: Orchestrates the aggregation pipeline
+2. **Browser Automation**: Chrome/Edge navigation via stable CSS selectors
+3. **Content Extraction**: HTML parsing with error containment
+4. **Content Cleaning**: Text normalization, noise removal
+5. **Structuring**: Schema enforcement, metadata attachment
+6. **Context Packaging**: JSON + Markdown + optional prompt templates
 
 ### Key Components
-- **Blue Prism Objects**: ChromeNavigation, ContentExtraction, QueueManagement, ExceptionHandler, AuditLogger
-- **API Layer**: Python FastAPI (or Node.js Express) on Lambda
-- **Queues**: SQS (research-queue, enrichment-queue, dead-letter-queue)
-- **Storage**: DynamoDB (WorkItems, AuditLogs, Configurations), S3 (logs, data, exports)
 
-## Planned Project Structure
+- **Blue Prism Objects**: ChromeNavigation, ContentExtraction, ContextFormatter, ExceptionHandler, AuditLogger
+- **Bridge Service**: Python Flask API for Blue Prism ↔ external communication
+- **Output Formats**: Structured JSON, human-readable Markdown, prompt templates
+
+## Project Structure
 
 ```
-blue-prism-research-agent/
-├── api/                    # FastAPI service (Python 3.11+)
-│   ├── src/handlers/       # Lambda handlers
-│   ├── src/services/       # Business logic
-│   ├── src/models/         # Pydantic models
-│   └── tests/
-├── llm-service/            # LLM provider abstraction layer
-│   ├── src/providers/      # OpenAI, Anthropic, Bedrock implementations
-│   └── src/prompts/        # Prompt templates
+research-context-aggregator/
+├── bridge/                 # Python Flask bridge service
+│   └── ...
 ├── blue-prism/             # Blue Prism objects and processes
 │   ├── objects/
 │   └── processes/
-├── infrastructure/         # Terraform or AWS CDK
-│   └── terraform/
-└── deployment/             # Docker, Lambda packages
+├── schemas/                # JSON schema definitions
+│   └── context-pack.schema.json
+├── templates/              # Prompt templates (no execution)
+│   ├── claude.template.md
+│   ├── gpt.template.md
+│   └── local.template.md
+└── docs/                   # Documentation
 ```
 
-## Build & Development Commands
+## Terminology
 
-### Python API Setup
+Use these terms consistently:
+
+| Correct Term | Incorrect Terms |
+|--------------|-----------------|
+| Context Formatter | AI Client |
+| Aggregation Pipeline | Research Agent |
+| Context Pack | Final Report |
+| Prompt-Ready Context Output | Prompt Generation |
+| Downstream Consumer | AI Model, LLM |
+
+## Design Principles
+
+### Determinism First
+- Same input must produce identical output
+- No randomness in extraction or formatting
+- Reproducible results for debugging and auditing
+
+### Model-Agnostic
+- Output works with any downstream consumer
+- No assumptions about which LLM (if any) will process the context
+- Human analysts are equally valid consumers
+
+### Zero Runtime Dependencies
+- No API keys required
+- No external service calls
+- Self-contained execution
+
+### Context Over Answers
+- System produces structured information
+- System does not interpret, summarize, or reason
+- Reasoning responsibility is explicitly delegated downstream
+
+## Output Schema
+
+Context Packs follow this structure:
+
+```json
+{
+  "context_pack": {
+    "version": "string",
+    "generated_at": "ISO8601 timestamp",
+    "query": "string",
+    "source_count": "integer",
+    "sources": [
+      {
+        "url": "string",
+        "title": "string",
+        "extracted_at": "ISO8601 timestamp",
+        "content": "string",
+        "word_count": "integer",
+        "metadata": {}
+      }
+    ],
+    "aggregated_content": "string",
+    "statistics": {
+      "total_words": "integer",
+      "total_sources": "integer",
+      "successful_extractions": "integer",
+      "failed_extractions": "integer"
+    }
+  }
+}
+```
+
+## Build & Development
+
+### Bridge Service Setup
 ```bash
-cd api
+cd bridge
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-### Run Local API
-```bash
-cd api
-uvicorn src.main:app --reload
+flask run
 ```
 
 ### Run Tests
 ```bash
-cd api
-pytest tests/                 # All tests
-pytest tests/unit/            # Unit tests only
-pytest tests/integration/     # Integration tests
-```
-
-### Infrastructure Deployment (Terraform)
-```bash
-cd infrastructure/terraform
-terraform init
-terraform plan
-terraform apply
-```
-
-### Infrastructure Deployment (AWS CDK)
-```bash
-cd infrastructure/cdk
-npm install
-cdk bootstrap
-cdk deploy
-```
-
-### Docker Build
-```bash
-cd api
-docker build -t rpa-api:latest .
-```
-
-### Lambda Deployment
-```bash
-cd api
-zip -r function.zip src/ requirements.txt
-aws lambda create-function --function-name rpa-queue-api --runtime python3.11 --handler src.handlers.queue_handler --zip-file fileb://function.zip
-```
-
-## API Endpoints
-
-- `POST /api/queue/item` - Add work item to research queue
-- `GET /api/queue/item/{id}` - Get work item status/results
-- `POST /api/llm/enrich` - Enrich content with LLM
-- `GET /api/status` - Health check
-- `POST /api/audit/log` - Log activity
-
-## Technology Stack
-
-- **RPA**: Blue Prism v7+ with Chrome automation
-- **API**: Python 3.11+ / FastAPI (or Node.js 18+ / Express)
-- **AWS**: API Gateway, Lambda, SQS, DynamoDB, S3, CloudWatch
-- **LLM**: OpenAI SDK, Anthropic SDK, boto3 (Bedrock)
-- **IaC**: Terraform or AWS CDK
-
-## Key Dependencies
-
-```
-fastapi==0.104.1
-uvicorn==0.24.0
-boto3==1.29.0
-pydantic==2.5.0
-openai==1.3.0
-anthropic==0.7.0
-python-dotenv==1.0.0
+cd bridge
+pytest tests/
 ```
 
 ## Environment Variables
 
-Required in `api/.env`:
+Required in `bridge/.env`:
 ```
-AWS_REGION=us-east-1
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-OPENAI_API_KEY=
-ANTHROPIC_API_KEY=
+FLASK_ENV=development
 LOG_LEVEL=INFO
 ```
 
+**Note**: No API keys are required. This is intentional.
+
 ## Design Patterns
 
-- **LLM Provider Abstraction**: Abstract base class `LLMProvider` with implementations for OpenAI, Anthropic, Bedrock
-- **Deterministic Selectors**: Use stable CSS selectors (ID, data attributes) over XPath for web scraping
-- **Queue-Based Processing**: All work flows through SQS queues with DynamoDB status tracking
-- **Exponential Backoff**: Retry logic with dead letter queue for failed items
+- **Deterministic Selectors**: Stable CSS selectors (ID, data attributes) over brittle XPath
+- **Error Containment**: Per-source failures do not halt the pipeline
+- **In-Memory Processing**: No intermediate disk writes
+- **Schema Enforcement**: All outputs validate against defined schemas
+
+## Code Review Guidelines
+
+When reviewing contributions:
+
+1. **Reject LLM integration**: This system does not call LLMs. Period.
+2. **Verify determinism**: Ensure no randomness or non-reproducible behavior
+3. **Check terminology**: Use "Context Pack", not "Report"; "Aggregation Pipeline", not "Agent"
+4. **Validate outputs**: All Context Packs must conform to schema
+5. **Preserve debuggability**: Maintain clear logging and state inspection
