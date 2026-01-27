@@ -149,6 +149,17 @@ The aggregation pipeline produces a **Context Pack** containing:
 - **Browser Automation**: Chrome / Edge
 - **Bridge Service**: Python Flask API (see `bridge/` directory)
 
+## Project Status & Roadmap
+
+**Current Strengths:**
+- Deterministic pipeline producing identical output for identical input
+- Structured, schema-enforced Context Packs with full source metadata
+- Per-source error containment with debug-friendly logging and state inspection
+
+**Planned Extensions:**
+- More exhaustive error and exception handling across edge cases (timeouts, malformed pages, partial content loads)
+- Expanding extraction beyond single-page results to support multi-page articles and paginated content
+
 ## Author
 
 **Dheeraj Aaditya**
